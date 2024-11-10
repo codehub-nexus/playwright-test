@@ -26,8 +26,10 @@ jobs:
           path: playwright-report/
       - name: Send Slack notification
         if: always()
-        uses: slackapi/slack-github-action@v1.27.0
+        uses: act10ns/slack@v2.1.0
         with:
-          payload-file-path: ".github/payload-slack-content.json"
+          channel: '#playwright-notification'
+          status: ${{ job.status }}
+          message: 'Playwright tests have finished'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
