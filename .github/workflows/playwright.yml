@@ -30,6 +30,7 @@ jobs:
         with:
           channel: '#playwright-notification'
           status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
           message: 'Playwright tests have finished'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
