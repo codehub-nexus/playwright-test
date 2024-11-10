@@ -24,5 +24,11 @@ jobs:
         with:
           name: playwright-report
           path: playwright-report/
-        
-        
+      - name: Send Slack notification
+        if: always()
+        uses: slackapi/slack-github-action@v1.27.0
+        with:
+          payload-file-path: "./payload-slack-content.json"
+          payload-file-path-parsed: false
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
